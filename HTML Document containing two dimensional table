@@ -1,0 +1,35 @@
+I recently solved this question in a codility interview
+
+
+
+function solution(today, limit) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    
+    var table= document.getElementsByTagName("table")[0];
+    var rowslen= table.rows.length;
+    var countincorrectrows=0;
+    
+    for(var i=0; i<rowslen; i++){
+        var tr=table.rows[i];
+        var color= tr.style.backgroundColor;
+        var borrowdate= table.rows[i].cells[1].innerHTML;
+        var returneddate=table.rows[i].cells[2].innerHTML;
+          const diffmsreturn= new Date(returneddate)- new Date(borrowdate);
+        const diffdaysreturn= diffmsreturn/(1000*60*60*24);
+        if(diffdaysreturn > limit){
+            if(color!=="red"){
+                countincorrectrows++;
+            }
+         
+        }
+        if(diffdaysreturn < limit && color==="red")
+        {
+            countincorrectrows++;
+        }
+    
+       
+     
+    }
+    return countincorrectrows;
+
+}
